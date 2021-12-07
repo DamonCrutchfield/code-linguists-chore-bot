@@ -12,8 +12,10 @@ const List = ({ chores }) => {
                 <div>
                     <h4 tabIndex="0">{name}</h4>
                     <p tabIndex="0">Due: {day}</p>
-                    <img tabIndex="0" src="../icons/delete-button.png" onClick={() => console.log("Clicked")} className="remove-button" alt="remove chore" />   
-                    <img tabIndex="0" src="../icons/check.png" onClick={() => console.log("Clicked")} className="complete-button" alt="Mark chore as complete" />
+                    <div class="grow">
+                        <img tabIndex="0" src="../icons/delete-button.png" onClick={() => console.log("Clicked")} className="remove-button" alt="remove chore" />   
+                        <img tabIndex="0" src="../icons/check.png" onClick={() => console.log("Clicked")} className="complete-button" alt="Mark chore as complete" />
+                    </div>
                 </div>
             </div>
             );

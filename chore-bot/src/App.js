@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import data from './data';
 import List from './List';
 import { ToastContainer, toast } from 'react-toastify';
@@ -13,6 +13,29 @@ function App() {
         toast("All cleared!");
         setChore([]);
     }
+    //timer to check chore for popup reminder.
+    async function checkChoreLoop() {
+        const currentdate = new Date(); 
+        const datetime = currentdate.getDate() + "/"
+                    + (currentdate.getMonth()+1)  + "/" 
+                    + currentdate.getFullYear() + " @ "  
+                    + currentdate.getHours() + ":"  
+                    + currentdate.getMinutes() + ":" 
+                    + currentdate.getSeconds();
+        console.log(datetime);
+        toast("Clean your House");
+    } 
+    const MINUTE_MS = 30000;
+    useEffect(() => {
+        const interval = setInterval(() => {
+        //TODO: add function to loop throught chore and toast when time for chore.
+          toast("Clean your House!");
+          //checkChoreLoop();
+        }, MINUTE_MS);
+      
+        return () => clearInterval(interval); 
+      }, []);
+
 
     return (
         <>

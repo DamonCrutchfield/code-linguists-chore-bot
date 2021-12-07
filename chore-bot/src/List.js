@@ -4,6 +4,7 @@ const List = ({ chores }) => {
   const resolveChore = (id) => {
     let elem = document.getElementById(id);
     elem.remove();
+    console.log(id);
   }
   return (
     <>

@@ -16,8 +16,9 @@ const resolveChore = (id) => {
                 <div>
                 <h4 tabIndex="0">{name}</h4>
                 <p tabIndex="0">Due: {day}</p>
-                <img tabIndex="0" src="../icons/delete-button.png" onClick={() => resolveChore(id)} className="remove-button" alt="remove chore" />   
-                <img tabIndex="0" src="../icons/check.png" onClick={() => resolveChore(id)} className="complete-button" alt="Mark chore as complete" />
+                <div className="grow">
+                    <img tabIndex="0" src="../icons/delete-button.png" onClick={() => resolveChore(id)} className="remove-button" alt="remove chore" />   
+                </div>
             </div>
         </div>
         );

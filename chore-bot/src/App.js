@@ -18,10 +18,10 @@ function App() {
         <>
             <main>
                 <section className="container">
-                    <h3>{chores.length} Chores Due This Week</h3>
+                    <h3 tabIndex="0">{chores.length} Chores Due This Week</h3>
                     <List chores={chores} />
-                    <button className="add-chore" onClick={() => console.log("Clicked")}>Add Chore</button>
-                    <button className="clear-all" onClick={() => clearAndNotify() }>Clear all</button>
+                    <button tabIndex="0" className="add-chore" onClick={() => console.log("Clicked")}>Add Chore</button>
+                    <button tabIndex="0" className="clear-all" onClick={() => clearAndNotify() }>Clear all</button>
                 </section>
             </main>
             <div>

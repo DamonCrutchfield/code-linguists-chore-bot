@@ -28,5 +28,5 @@ export default [
         name: 'Take out trash',
         day: 'Monday',
         status: true
-    }
+    },
 ];

@@ -3,7 +3,13 @@ import data from './data';
 import List from './List';
 
 function App() {
-    return <h2>Chore reminder app</h2>
+    return (
+        <main>
+            <section className="container">
+                <h3>0 Chores Due Today</h3>
+            </section>
+        </main>
+    );
 }
 
 export default App;

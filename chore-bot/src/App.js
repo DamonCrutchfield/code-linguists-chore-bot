@@ -5,8 +5,14 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
+
     const [chores, setChore] = useState(data);
-    const notify = () => toast("All cleared!");
+    
+    const clearAndNotify = () => {
+        
+        toast("All cleared!");
+        setChore([]);
+    }
 
     return (
         <>
@@ -15,11 +21,10 @@ function App() {
                     <h3>{chores.length} Chores Due This Week</h3>
                     <List chores={chores} />
                     <button className="add-chore" onClick={() => console.log("Clicked")}>Add Chore</button>
-                    <button className="clear-all" onClick={notify} onClick={() => setChore([])}>Clear all</button>
+                    <button className="clear-all" onClick={() => clearAndNotify() }>Clear all</button>
                 </section>
             </main>
             <div>
-                <button onClick={notify}>Notify !</button>
                 <ToastContainer />
             </div>
         </>

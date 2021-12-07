@@ -10,8 +10,7 @@ const List = ({ chores }) => {
             <img src={image} className="chore-images" />
             <div>
                 <h4>{name}</h4>
-                <p>{day}</p>
-                <p>{status}</p>
+                <p>Due: {day}</p>
                 <img src="../icons/delete-button.png" onClick={() => console.log("Clicked")} className="remove-button"/>   
                 <img src="../icons/check.png" onClick={() => console.log("Clicked")} className="complete-button"/>
             </div>

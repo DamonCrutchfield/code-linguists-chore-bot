@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
-import data from './data';
 import List from './List';
+import data from './data';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import dingSfx from './sounds/servicebell.mp3';
 import popSfx from './sounds/pop.mp3';
 
 function App()   {
-    const [chores, setChore] = useState(data);
+  const [chores, setChore] = useState(data);
+  const [count, setCount] = useState(chores.length);
     const sfx = new Audio(dingSfx);
     const sfxPop = new Audio(popSfx);
 
@@ -43,7 +44,7 @@ function App()   {
             checkChoreLoop();
         }, MINUTE_MS);
         return () => clearInterval(interval); 
-    }, []);
+    }, [chores]);
 
         // function handleChore(e){
         //     const newChore = chores;
@@ -95,8 +96,8 @@ function App()   {
         <>
             <main>
                 <section className="container">
-                    <h3 tabIndex="0">{chores.length} Chores Due This Week</h3>
-                    <List chores={chores} />
+                    <h3>{!chores.length ? chores.length: count} Chores Due This Week</h3>
+                    <List chores={chores} setCount={setCount}/>
                     <button tabIndex="0" className="add-chore" onClick={() => console.log("Clicked")}>Add Chore</button>
                     <button tabIndex="0" className="download-chore" onClick={() => download(JSON.stringify(data), 'chore.json', 'text/plain')}>Download Chore list</button>
                     <button tabIndex="0" className="clear-all" onClick={() => clearAndNotify() }>Clear all</button>

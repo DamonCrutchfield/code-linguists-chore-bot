@@ -12,6 +12,7 @@
     "react-scripts": "4.0.3",
     "react-toastify": "^8.1.0",
     "reactstrap": "^9.0.1",
+    "use-sound": "^4.0.1",
     "web-vitals": "^1.1.2"
   },
   "scripts": {

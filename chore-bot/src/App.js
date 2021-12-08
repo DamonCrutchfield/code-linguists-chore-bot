@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from "react";
-import List from './List';
 import data from './data';
+import List from './List';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import dingSfx from './sounds/servicebell.mp3';
 import popSfx from './sounds/pop.mp3';
 
 function App()   {
-  const [chores, setChore] = useState(data);
-  const [count, setCount] = useState(chores.length);
+    //States
+    const [chores, setChore] = useState(data);
+    const [count, setCount] = useState(chores.length);
+    const [addChore, setAddChore] = useState(false); 
     const sfx = new Audio(dingSfx);
     const sfxPop = new Audio(popSfx);
 
@@ -18,6 +20,8 @@ function App()   {
         sfxPop.play();
         setChore([]);
     }
+
+    //Toast/Timer
     //timer function to check chore for popup reminder.
     async function checkChoreLoop() {
         //get Date and time
@@ -44,43 +48,9 @@ function App()   {
             checkChoreLoop();
         }, MINUTE_MS);
         return () => clearInterval(interval); 
-    }, [chores]);
+    }, []);
 
-        // function handleChore(e){
-        //     const newChore = chores;
-        //     newChore.name = e.target.value;
-        //     setChore(newChore);
-        //     console.log("New chore added", chores);
-        // }
-    
-        // function handleDay(e){
-        //     const newChore = chores;
-        //     newChore.day = e.target.value;
-        //     setChore(newChore);
-        //     console.log("Date added", chores)
-        // }
-    
-        // function handleStatus(e){
-        //     const newChore = chores;
-        //     newChore.status = e.target.value;
-        //     setChore(newChore);
-        //     console.log("Status added", chores)
-    
-        // }
-    
-        // function handleImage(e){
-        //     const newChore = chores;
-        //     newChore.image = e.target.value;
-        //     setChore(newChore);
-        //     console.log("Chore image added", chores)
-        // }
-    
-        // function handleSubmit(e){
-        //     props.addChore(chores);
-        //     e.target.reset();
-
-        // }
-
+      //Download/Load JSON
       //Function to download chores as json file
     function download(content, fileName, contentType) {
         toast("Downloading List");
@@ -92,27 +62,36 @@ function App()   {
         a.click();
     }
     
+    //Add Chore
+       const handleSubmit = (e) => {
+            e.preventDefault();
+            setAddChore(false);
+            console.log(`the chore entered was ${e.target[0].value}`);
+            e.target.reset();
+        };
+
     return (
         <>
             <main>
                 <section className="container">
-                    <h3>{!chores.length ? chores.length: count} Chores Due This Week</h3>
-                    <List chores={chores} setCount={setCount}/>
-                    <button tabIndex="0" className="add-chore" onClick={() => console.log("Clicked")}>Add Chore</button>
+                <h3>{!chores.length ? chores.length: count} Chores Due This Week</h3>
+                <List chores={chores} setCount={setCount}/>
+                    <button tabIndex="0" className="add-chore" onClick={() => setAddChore(!addChore)}>Add Chore</button>
+                    <br/>
                     <button tabIndex="0" className="download-chore" onClick={() => download(JSON.stringify(data), 'chore.json', 'text/plain')}>Download Chore list</button>
-                    <button tabIndex="0" className="clear-all" onClick={() => clearAndNotify() }>Clear all</button>
-                    <img tabIndex="0" id="dust" src="Images/dust.gif" alt="pink rabbit dusting gif"/>
+                    <button tabIndex="0" className="clear-all" onClick={() => clearAndNotify() }>Clear all</button>                    <img tabIndex="0" id="dust" src="Images/dust.gif" alt="pink rabbit dusting gif"/>
                 </section>
-                {/* <form onSubmit={handleSubmit}>
-                <input id="chore-name" class="input-chore" placeholder="chore" type="text" onchange={handleChore} required/>
-                <br/>
-                <input id="chore-day" class="input-day" placeholder="day" type="date"/>
-                </form> */}
+                <form onSubmit={handleSubmit} style={{visibility: addChore ? 'visible': 'hidden',}}>
+                <input id="choreName" placeholder="chore" type="text" title="Chore Name" required/>
+                <input id="choreDate" type="date" title="Chore due date"/>
+                <input id="choreTime" placeholder="HH:00" required pattern="^([0-1]?[0-9]|2[0-4]):([0-5][0-9])(:[0-5][0-9])?$" title="Chore Time: 24 Hour Time Clock"/>
+                <input id="choreImage" placeholder="http://" title="not required default image will be applied if none is added"/>
+                <button type="submit" title="submit chore">Add Chore</button>
+                </form>
             </main>
             <div>
                 <ToastContainer />
             </div>
-
     </>
     );
 }

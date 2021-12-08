@@ -86,7 +86,7 @@ function App()   {
                                 </button>
                             </div>
                             <div className="modal-body">
-                                <form>  
+                                <form onSubmit={handleSubmit}>  
                                     <div className="form-group">
                                         <input id="choreName" placeholder="Chore Name" type="text" title="Chore Name" required/>
                                     </div>
@@ -101,7 +101,7 @@ function App()   {
                                     </div>
                                     <div className="form-group">
                                         <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        <button type="submit" onSubmit={handleSubmit} className=" btn btn-warning submit-button" title="submit chore">Add Chore</button>
+                                        <button type="submit" className="btn btn-warning submit-button">Add Chore</button>
                                     </div>
                                 </form>
                             </div>

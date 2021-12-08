@@ -14,13 +14,6 @@ function App()   {
     const sfx = new Audio(dingSfx);
     const sfxPop = new Audio(popSfx);
 
-    
-    const clearAndNotify = () => {
-        toast("All cleared!");
-        sfxPop.play();
-        setChore([]);
-    }
-
     //Toast/Timer
     //timer function to check chore for popup reminder.
     async function checkChoreLoop() {
@@ -74,20 +67,47 @@ function App()   {
         <>
             <main>
                 <section className="container">
-                <h3>{!chores.length ? chores.length: count} Chores Due This Week</h3>
-                <List chores={chores} setCount={setCount}/>
-                    <button tabIndex="0" className="add-chore" onClick={() => setAddChore(!addChore)}>Add Chore</button>
+                    <h3>{!chores.length ? chores.length: count} Chores Due This Week</h3>
+                    <List chores={chores} setCount={setCount}/>
+                    <button tabIndex="0" type="button" className="add-chore" data-toggle="modal" data-target="#exampleModal" onClick={() => setAddChore(!addChore)}>Add Chore</button>
                     <br/>
                     <button tabIndex="0" className="download-chore" onClick={() => download(JSON.stringify(data), 'chore.json', 'text/plain')}>Download Chore list</button>
-                    <button tabIndex="0" className="clear-all" onClick={() => clearAndNotify() }>Clear all</button>                    <img tabIndex="0" id="dust" src="Images/dust.gif" alt="pink rabbit dusting gif"/>
+                    <img tabIndex="0" id="dust" src="Images/dust.gif" alt="pink rabbit dusting gif"/>
                 </section>
-                <form onSubmit={handleSubmit} style={{visibility: addChore ? 'visible': 'hidden',}}>
-                <input id="choreName" placeholder="chore" type="text" title="Chore Name" required/>
-                <input id="choreDate" type="date" title="Chore due date"/>
-                <input id="choreTime" placeholder="HH:00" required pattern="^([0-1]?[0-9]|2[0-4]):([0-5][0-9])(:[0-5][0-9])?$" title="Chore Time: 24 Hour Time Clock"/>
-                <input id="choreImage" placeholder="http://" title="not required default image will be applied if none is added"/>
-                <button type="submit" title="submit chore">Add Chore</button>
-                </form>
+
+                {/* Bootstrap modal */}
+                <div className="modal fade" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div className="modal-dialog" role="document">
+                        <div className="modal-content">
+                            <div className="modal-header">
+                                <h5 className="modal-title" id="exampleModalLabel">Add a New Chore</h5>
+                                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div className="modal-body">
+                                <form>  
+                                    <div className="form-group">
+                                        <input id="choreName" placeholder="Chore Name" type="text" title="Chore Name" required/>
+                                    </div>
+                                    <div className="form-group">
+                                        <input id="choreDate" alt="Due by Date" type="date" title="Chore due date"/>
+                                    </div>
+                                    <div className="form-group">
+                                        <input id="choreTime" alt="Due by Time" placeholder="HH:00" required pattern="^([0-1]?[0-9]|2[0-4]):([0-5][0-9])(:[0-5][0-9])?$" title="Chore Time: 24 Hour Time Clock"/>
+                                    </div>
+                                    <div className="form-group">
+                                        <input id="choreImage" alt="Add image URL" placeholder="http://" title="not required default image will be applied if none is added"/>
+                                    </div>
+                                    <div className="form-group">
+                                        <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button type="submit" onSubmit={handleSubmit} className=" btn btn-warning submit-button" title="submit chore">Add Chore</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </main>
             <div>
                 <ToastContainer />

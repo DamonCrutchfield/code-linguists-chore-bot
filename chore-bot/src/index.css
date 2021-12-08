@@ -147,7 +147,8 @@ Variables
   
   .container {
     width: 90vw;
-    margin-top: 5rem 0;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
     max-width: var(--fixed-width);
     background: var(--clr-white);
     border-radius: var(--radius);
@@ -209,15 +210,11 @@ Variables
   }
 
   .add-chore {
-    margin: 2rem auto 0 auto;
-  }
-
-  .clear-all {
-    margin: 1rem auto 0 auto;
+    margin: 2rem auto 1rem auto;
   }
 
   .download-chore {
-    margin: 1rem auto 0 auto;
+    margin: -1.5rem auto 0 auto;
   }
 
   .rotate img{
@@ -239,4 +236,8 @@ Variables
     position: fixed; 
     bottom: 0px; 
     right: 0px;
+  }
+
+  .submit-button {
+    margin-left: 10px;
   }

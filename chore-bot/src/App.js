@@ -60,6 +60,16 @@ function App()   {
             e.preventDefault();
             setAddChore(false);
             console.log(`the chore entered was ${e.target[0].value}`);
+            const choreList = chores;
+            choreList.push({
+                id: 10,
+                name: e.target[1].value,
+                day: e.target[2].value,
+                status: e.target[3].value,
+                image: "",
+                due:""
+            });
+            console.log(choreList);
             e.target.reset();
         };
 

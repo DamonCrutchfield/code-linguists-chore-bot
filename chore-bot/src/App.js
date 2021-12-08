@@ -87,21 +87,21 @@ function App()   {
                             </div>
                             <div className="modal-body">
                                 <form onSubmit={handleSubmit}>  
-                                    <div className="form-group">
+                                    <div className="form-group" tabIndex ="0" aria-label="Enter a chore name">
                                         <input id="choreName" placeholder="Chore Name" type="text" title="Chore Name" required/>
                                     </div>
-                                    <div className="form-group">
-                                        <input id="choreDate" alt="Due by Date" type="date" title="Chore due date"/>
+                                    <div className="form-group" tabIndex ="0" aria-label="Enter a due Date">
+                                        <input id="choreDate" type="date" title="Chore due date"/>
+                                    </div>
+                                    <div className="form-group" tabIndex ="0" aria-label="Enter the time due">
+                                        <input id="choreTime" placeholder="HH:00" required pattern="^([0-1]?[0-9]|2[0-4]):([0-5][0-9])(:[0-5][0-9])?$" title="Chore Time: 24 Hour Time Clock"/>
+                                    </div>
+                                    <div className="form-group" tabIndex ="0" aria-label="Enter an Image URL, not required default image will be applied if none is added">
+                                        <input id="choreImage" placeholder="http://" title="not required default image will be applied if none is added"/>
                                     </div>
                                     <div className="form-group">
-                                        <input id="choreTime" alt="Due by Time" placeholder="HH:00" required pattern="^([0-1]?[0-9]|2[0-4]):([0-5][0-9])(:[0-5][0-9])?$" title="Chore Time: 24 Hour Time Clock"/>
-                                    </div>
-                                    <div className="form-group">
-                                        <input id="choreImage" alt="Add image URL" placeholder="http://" title="not required default image will be applied if none is added"/>
-                                    </div>
-                                    <div className="form-group">
-                                        <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        <button type="submit" className="btn btn-warning submit-button">Add Chore</button>
+                                        <button tabIndex ="0" type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button tabIndex ="0" type="submit" className="btn btn-warning submit-button">Add Chore</button>
                                     </div>
                                 </form>
                             </div>

@@ -10,7 +10,7 @@ const List = ({ chores }) => {
   return (
     <>
       {choreList.map((chore, index) => {
-        const { id, name, day, status, image } = chore;
+        const { id, name, day, image } = chore;
         return (
             <div key={id} className='chore' id={id}>
                 <img tabIndex="0" alt={name} src={image} className="chore-images" />

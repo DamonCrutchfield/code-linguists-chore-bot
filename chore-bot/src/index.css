@@ -25,15 +25,15 @@ Variables
     --clr-grey-3: hsl(211, 27%, 70%);
     --clr-grey-4: hsl(209, 23%, 60%);
     /* grey used for paragraphs */
-    --clr-grey-5: hsl(210, 22%, 49%);
-    --clr-grey-6: hsl(209, 28%, 39%);
+    --clr-grey-5: hsl(211, 41%, 45%);
+    --clr-grey-6: hsl(210, 45%, 21%);
     --clr-grey-7: hsl(209, 34%, 30%);
-    --clr-grey-8: hsl(211, 39%, 23%);
-    --clr-grey-9: hsl(209, 61%, 16%);
-    --clr-white: #fff;
+    --clr-grey-8: hsl(212, 18%, 30%);
+    --clr-grey-9: hsl(0, 3%, 6%);
+    --clr-white: rgb(180, 173, 179);
     --clr-red-dark: hsl(360, 67%, 44%);
     --clr-red-light: hsl(360, 71%, 66%);
-    --clr-blue-dark: #241896;
+    --clr-blue-dark: #1f11a1;
     --clr-green-light: hsl(125, 71%, 66%);
     --clr-black: #222;
     --transition: all 0.3s linear;
@@ -58,10 +58,16 @@ Variables
     padding: 0;
     box-sizing: border-box;
   }
+  html,
+  body{
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+  }
   body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
     Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    background: var(--clr-grey-2);
+    background: rgb(7, 7, 95);
     color: var(--clr-grey-9);
     line-height: 1.5;
     font-size: 0.875rem;
@@ -113,7 +119,7 @@ Variables
       font-size: 1rem;
     }
     body {
-      font-size: 1rem;
+      font-size: 1.5rem;
     }
     h1,
     h2,
@@ -145,13 +151,13 @@ Variables
   }
   
   .container {
-    width: 90vw;
-    margin: 5rem 0;
-    max-width: var(--fixed-width);
+    width: 80vw;
+    max-width: 20%;
+    margin-bottom: 50%;
     background: var(--clr-white);
-    border-radius: var(--radius);
-    padding: 1.5rem 2rem;
-    box-shadow: var(--dark-shadow);
+    border: 3px solid blue;
+    padding: 35px;
+   
   }
   .container h3 {
     font-weight: normal;
@@ -229,3 +235,44 @@ Variables
         transform: scale(1.2);
         transition: 1s ease;
         }
+        #sweep {
+          position: normal;
+          padding: 0;
+          margin: 0;
+          border-radius: 25px;
+          animation-name: sweep;
+          animation-duration: 8s;
+          animation-fill-mode: both;
+          animation-iteration-count: infinite;
+          animation-direction: reverse;
+          background-blend-mode: color
+         
+        }
+
+        @keyframes sweep{
+          from{transform: translateX(-2100px)}
+          to{transform: translateX(2700px)}
+        }
+
+        #laundry{
+          position: absolute;
+          bottom: 10px;
+          border: 3px;
+          
+        }
+
+        #wash{
+          position: absolute;
+          bottom: 8px;
+          right: 20%;
+        }
+
+        #dust{
+          position: absolute;
+          top: 25%;
+          right: 35%;
+          
+
+        }
+
+       

@@ -10,6 +10,7 @@ import dingSfx from './sounds/servicebell.mp3';
 function App()   {
     const [chores, setChore] = useState(data);
     const sfx = new Audio(dingSfx);
+    
     const clearAndNotify = () => {
         toast("All cleared!");
         setChore([]);
@@ -88,20 +89,20 @@ function App()   {
     
     return (
         <>
-       
             <main>
                 <section className="container">
                     <h3 tabIndex="0">{chores.length} Chores Due This Week</h3>
                     <List chores={chores} />
                     <button tabIndex="0" className="add-chore" onClick={() => console.log("Clicked")}>Add Chore</button>
+                    <button tabIndex="0" className="download-chore" onClick={() => download(JSON.stringify(data), 'chore.json', 'text/plain')}>Download Chore list</button>
                     <button tabIndex="0" className="clear-all" onClick={() => clearAndNotify() }>Clear all</button>
+                    <img tabIndex="0" id="dust" src="Images/dust.gif" alt="pink rabbit dusting gif"/>
                 </section>
                 {/* <form onSubmit={handleSubmit}>
                 <input id="chore-name" class="input-chore" placeholder="chore" type="text" onchange={handleChore} required/>
                 <br/>
                 <input id="chore-day" class="input-day" placeholder="day" type="date"/>
                 </form> */}
-                <button tabIndex="0" className="" onClick={() => download(JSON.stringify(data), 'chore.json', 'text/plain')}>Download Chore list</button>
             </main>
             <div>
                 <ToastContainer />

@@ -5,7 +5,7 @@ export default [
         day: 'Sunday',
         status: true,
         image: '../icons/clean-dishes.png',
-        due:"17:25:00:2021-12-7"
+        due:"22:31:00:2021-12-7"
     },
     {
         id: 2,

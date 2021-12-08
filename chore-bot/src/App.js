@@ -3,44 +3,53 @@ import data from './data';
 import List from './List';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import dingSfx from './sounds/servicebell.mp3';
 
 function App() {
 
     const [chores, setChore] = useState(data);
-    
+    const sfx = new Audio(dingSfx);
     const clearAndNotify = () => {
-        
         toast("All cleared!");
         setChore([]);
     }
-    //timer to check chore for popup reminder.
+    //timer function to check chore for popup reminder.
     async function checkChoreLoop() {
-        let today = new Date();
-        let time = today.getHours() + ":" + today.getMinutes() + ":" + "00";
-        let date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+        //get Date and time
+        const today = new Date();
+        const time = today.getHours() + ":" + today.getMinutes() + ":" + "00";
+        const date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
 
+        //loop through chore due dates and check for a date time match`
         for(const chore in data){
-            //console.log(data[chore].due + ":"+ datetime);
-            console.log(time +":"+date);
-            const match = false;
-            if((time+":"+date) === data[chore].due){
-                console.log("match");
+            //format time and check for match and toast if there is match
+           if((time+":"+date) === data[chore].due){
+                //Sound Effect load and play when match found
+                sfx.play();
                 toast(data[chore].name);
-            }else{console.log("no match")}
+            }
         }
-    } 
+    }
+    //set timer interval 60000 = 1min  
     const MINUTE_MS = 10000;
+
     useEffect(() => {
         const interval = setInterval(() => {
-        //TODO: add function to loop throught chore and toast when time for chore.
-          //toast("Clean your House!");
+          //Call function ever timer interval
           checkChoreLoop();
         }, MINUTE_MS);
-      
         return () => clearInterval(interval); 
       }, []);
 
-
+      //Function to download chores as json file
+      function download(content, fileName, contentType) {
+        const a = document.createElement("a");
+        const file = new Blob([content], {type: contentType});
+        a.href = URL.createObjectURL(file);
+        a.download = fileName;
+        a.click();
+    }
+    
     return (
         <>
             <main>
@@ -50,6 +59,7 @@ function App() {
                     <button tabIndex="0" className="add-chore" onClick={() => console.log("Clicked")}>Add Chore</button>
                     <button tabIndex="0" className="clear-all" onClick={() => clearAndNotify() }>Clear all</button>
                 </section>
+                <button tabIndex="0" className="" onClick={() => download(JSON.stringify(data), 'chore.json', 'text/plain')}>Download Chore list</button>
             </main>
             <div>
                 <ToastContainer />

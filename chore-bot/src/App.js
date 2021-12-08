@@ -20,17 +20,22 @@ function App()   {
         //get Date and time
         const today = new Date();
         const time = today.getHours() + ":" + today.getMinutes() + ":" + "00";
+        //2021-12-09 @ 23:00
         const date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-        console.log((time+":"+date));
+        console.log((date+":"+time));
         //loop through chore due dates and check for a date time match`
         for(const chore in data){
             //format time and check for match and toast if there is match
-            if((time+":"+date) === data[chore].due){
+            if((time+" @ "+date) === data[chore].due){
                 //Sound Effect load and play when match found
                 sfx.play();
                 toast(data[chore].name);
             }
         }
+    }
+    const testNotifacation = () => {
+        sfx.play();
+        toast("Wash Your Dishes");
     }
     //set timer interval 60000 = 1min  
     const MINUTE_MS = 10000;
@@ -72,9 +77,8 @@ function App()   {
                 day: "Not used",
                 status:true,
                 image: imageUrl ,
-                due:e.target[1].value+":"+e.target[2].value
+                due:e.target[1].value+" @ "+e.target[2].value
             });
-            console.log(choreList);
             e.target.reset();
         };
 
@@ -82,7 +86,7 @@ function App()   {
         <>
             <main>
                 <section className="container">
-                    <h3 tabIndex="0">{!chores.length ? chores.length: count} Chores Due This Week</h3>
+                    <h3 tabIndex="0">{!chores.length ? chores.length: count} Chores Due</h3>
                     <List chores={chores} setCount={setCount}/>
                     <button tabIndex="0" type="button" className="add-chore" data-toggle="modal" data-target="#exampleModal" onClick={() => { setAddChore(!addChore); sfxPop.play(); }}>Add Chore</button>
                     <br/>
@@ -125,6 +129,7 @@ function App()   {
                 </div>
             </main>
             <div>
+            <button onClick={testNotifacation}>test notifaction</button>
                 <ToastContainer />
             </div>
     </>

@@ -68,7 +68,7 @@ function App()   {
         <>
             <main>
                 <section className="container">
-                    <h3>{!chores.length ? chores.length: count} Chores Due This Week</h3>
+                    <h3 tabIndex="0">{!chores.length ? chores.length: count} Chores Due This Week</h3>
                     <List chores={chores} setCount={setCount}/>
                     <button tabIndex="0" type="button" className="add-chore" data-toggle="modal" data-target="#exampleModal" onClick={() => { setAddChore(!addChore); sfxPop.play(); }}>Add Chore</button>
                     <br/>

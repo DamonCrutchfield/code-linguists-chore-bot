@@ -14,6 +14,8 @@ function App()   {
         toast("All cleared!");
         setChore([]);
     }
+
+    //Toast/Timer
     //timer function to check chore for popup reminder.
     async function checkChoreLoop() {
         //get Date and time
@@ -42,41 +44,7 @@ function App()   {
         return () => clearInterval(interval); 
     }, []);
 
-        // function handleChore(e){
-        //     const newChore = chores;
-        //     newChore.name = e.target.value;
-        //     setChore(newChore);
-        //     console.log("New chore added", chores);
-        // }
-    
-        // function handleDay(e){
-        //     const newChore = chores;
-        //     newChore.day = e.target.value;
-        //     setChore(newChore);
-        //     console.log("Date added", chores)
-        // }
-    
-        // function handleStatus(e){
-        //     const newChore = chores;
-        //     newChore.status = e.target.value;
-        //     setChore(newChore);
-        //     console.log("Status added", chores)
-    
-        // }
-    
-        // function handleImage(e){
-        //     const newChore = chores;
-        //     newChore.image = e.target.value;
-        //     setChore(newChore);
-        //     console.log("Chore image added", chores)
-        // }
-    
-        // function handleSubmit(e){
-        //     props.addChore(chores);
-        //     e.target.reset();
-           
-        // }
-
+      //Download/Load JSON
       //Function to download chores as json file
       function download(content, fileName, contentType) {
         const a = document.createElement("a");
@@ -86,6 +54,15 @@ function App()   {
         a.click();
     }
     
+    //Add Chore
+    const [addChore, setAddChore] = useState(false); 
+       const handleSubmit = (e) => {
+            e.preventDefault();
+            setAddChore(false);
+            console.log(`the chore entered was ${e.target[0].value}`);
+            e.target.reset();
+        };
+
     return (
         <>
        
@@ -93,15 +70,17 @@ function App()   {
                 <section className="container">
                     <h3 tabIndex="0">{chores.length} Chores Due This Week</h3>
                     <List chores={chores} />
-                    <button tabIndex="0" className="add-chore" onClick={() => console.log("Clicked")}>Add Chore</button>
+                    <button tabIndex="0" className="add-chore" onClick={() => setAddChore(!addChore)}>Add Chore</button>
                     <button tabIndex="0" className="clear-all" onClick={() => clearAndNotify() }>Clear all</button>
+                    <br/>
+                    <button tabIndex="0" className="download-chore" onClick={() => download(JSON.stringify(data), 'chore.json', 'text/plain')}>Download Chore list</button>
                 </section>
-                {/* <form onSubmit={handleSubmit}>
-                <input id="chore-name" class="input-chore" placeholder="chore" type="text" onchange={handleChore} required/>
+                <form onSubmit={handleSubmit} style={{visibility: addChore ? 'visible': 'hidden',}}>
+                <input id="choreName" placeholder="chore" type="text" required/>
                 <br/>
-                <input id="chore-day" class="input-day" placeholder="day" type="date"/>
-                </form> */}
-                <button tabIndex="0" className="" onClick={() => download(JSON.stringify(data), 'chore.json', 'text/plain')}>Download Chore list</button>
+                <input id="choreDate" placeholder="day" type="date"/>
+                <button type="submit">Add Chore</button>
+                </form>
             </main>
             <div>
                 <ToastContainer />

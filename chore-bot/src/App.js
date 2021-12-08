@@ -19,7 +19,7 @@ function App() {
         const today = new Date();
         const time = today.getHours() + ":" + today.getMinutes() + ":" + "00";
         const date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-
+        console.log((time+":"+date));
         //loop through chore due dates and check for a date time match`
         for(const chore in data){
             //format time and check for match and toast if there is match

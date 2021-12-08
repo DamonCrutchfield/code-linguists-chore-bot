@@ -82,8 +82,9 @@ function App()   {
                 </section>
                 <form onSubmit={handleSubmit} style={{visibility: addChore ? 'visible': 'hidden',}}>
                 <input id="choreName" placeholder="chore" type="text" required/>
-                <br/>
-                <input id="choreDate" placeholder="day" type="date"/>
+                <input id="choreDate" type="date"/>
+                <input id="choreTime" placeholder="HH:00" required pattern="^([0-1]?[0-9]|2[0-4]):([0-5][0-9])(:[0-5][0-9])?$" title="24 Hour Time Clock"/>
+                <input id="choreImage" placeholder="http://" title="not required default image will be applied if none is added"/>
                 <button type="submit">Add Chore</button>
                 </form>
             </main>

@@ -7,7 +7,10 @@ import dingSfx from './sounds/servicebell.mp3';
 import popSfx from './sounds/pop.mp3';
 
 function App()   {
+    //States
     const [chores, setChore] = useState(data);
+    const [count, setCount] = useState(chores.length);
+    const [addChore, setAddChore] = useState(false); 
     const sfx = new Audio(dingSfx);
     const sfxPop = new Audio(popSfx);
 
@@ -60,7 +63,6 @@ function App()   {
     }
     
     //Add Chore
-    const [addChore, setAddChore] = useState(false); 
        const handleSubmit = (e) => {
             e.preventDefault();
             setAddChore(false);
@@ -72,20 +74,19 @@ function App()   {
         <>
             <main>
                 <section className="container">
-                    <h3 tabIndex="0">{chores.length} Chores Due This Week</h3>
-                    <List chores={chores} />
+                <h3>{!chores.length ? chores.length: count} Chores Due This Week</h3>
+                <List chores={chores} setCount={setCount}/>
                     <button tabIndex="0" className="add-chore" onClick={() => setAddChore(!addChore)}>Add Chore</button>
                     <br/>
                     <button tabIndex="0" className="download-chore" onClick={() => download(JSON.stringify(data), 'chore.json', 'text/plain')}>Download Chore list</button>
-                    <button tabIndex="0" className="clear-all" onClick={() => clearAndNotify() }>Clear all</button>
-                    <img tabIndex="0" id="dust" src="Images/dust.gif" alt="pink rabbit dusting gif"/>
+                    <button tabIndex="0" className="clear-all" onClick={() => clearAndNotify() }>Clear all</button>                    <img tabIndex="0" id="dust" src="Images/dust.gif" alt="pink rabbit dusting gif"/>
                 </section>
                 <form onSubmit={handleSubmit} style={{visibility: addChore ? 'visible': 'hidden',}}>
-                <input id="choreName" placeholder="chore" type="text" required/>
-                <input id="choreDate" type="date"/>
-                <input id="choreTime" placeholder="HH:00" required pattern="^([0-1]?[0-9]|2[0-4]):([0-5][0-9])(:[0-5][0-9])?$" title="24 Hour Time Clock"/>
+                <input id="choreName" placeholder="chore" type="text" title="Chore Name" required/>
+                <input id="choreDate" type="date" title="Chore due date"/>
+                <input id="choreTime" placeholder="HH:00" required pattern="^([0-1]?[0-9]|2[0-4]):([0-5][0-9])(:[0-5][0-9])?$" title="Chore Time: 24 Hour Time Clock"/>
                 <input id="choreImage" placeholder="http://" title="not required default image will be applied if none is added"/>
-                <button type="submit">Add Chore</button>
+                <button type="submit" title="submit chore">Add Chore</button>
                 </form>
             </main>
             <div>

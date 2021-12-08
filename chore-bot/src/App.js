@@ -44,7 +44,7 @@ function App()   {
             checkChoreLoop();
         }, MINUTE_MS);
         return () => clearInterval(interval); 
-    }, [chores]);
+    }, []);
 
         // function handleChore(e){
         //     const newChore = chores;

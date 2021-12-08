@@ -35,7 +35,7 @@ export default [
         image: '../icons/trash.png'
     },
     {
-        id: 5,
+        id: 6,
         name: 'Laundry',
         day: 'Wednesday',
         status: true,

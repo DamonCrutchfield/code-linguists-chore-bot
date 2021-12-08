@@ -40,7 +40,7 @@ export default [
         due:"12/7/2021 @ 16:50"
     },
     {
-        id: 5,
+        id: 6,
         name: 'Laundry',
         day: 'Wednesday',
         status: true,

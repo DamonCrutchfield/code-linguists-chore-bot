@@ -1,15 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const List = ({ chores }) => {
-
-const resolveChore = (id) => {
-    let elem = document.getElementById(id);
-    elem.remove();
+  const [choreList, setChoreList] = useState(chores);
+  const resolveChore = (index) => {
+    let array = [...choreList]; // make a separate copy of the array
+    array.splice(index, 1);
+    setChoreList(array);
   }
   return (
     <>
-      {chores.map((chore) => {
-        const { id, name, day, image } = chore;
+      {choreList.map((chore, index) => {
+        const { id, name, day, status, image } = chore;
         return (
             <div key={id} className='chore' id={id}>
                 <img tabIndex="0" alt={name} src={image} className="chore-images" />
@@ -20,7 +21,7 @@ const resolveChore = (id) => {
                     <img tabIndex="0" src="../icons/delete-button.png" onClick={() => resolveChore(id)} className="remove-button" alt="remove chore" />   
                 </div>
             </div>
-        </div>
+          </div>
         );
       })}
     </>

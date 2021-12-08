@@ -58,6 +58,7 @@ function App()   {
     //Add Chore
        const handleSubmit = (e) => {
             e.preventDefault();
+            sfxPop.play();
             setAddChore(false);
             console.log(`the chore entered was ${e.target[0].value}`);
             e.target.reset();
@@ -69,7 +70,7 @@ function App()   {
                 <section className="container">
                     <h3>{!chores.length ? chores.length: count} Chores Due This Week</h3>
                     <List chores={chores} setCount={setCount}/>
-                    <button tabIndex="0" type="button" className="add-chore" data-toggle="modal" data-target="#exampleModal" onClick={() => setAddChore(!addChore)}>Add Chore</button>
+                    <button tabIndex="0" type="button" className="add-chore" data-toggle="modal" data-target="#exampleModal" onClick={() => { setAddChore(!addChore); sfxPop.play(); }}>Add Chore</button>
                     <br/>
                     <button tabIndex="0" className="download-chore" onClick={() => download(JSON.stringify(data), 'chore.json', 'text/plain')}>Download Chore list</button>
                     <img tabIndex="0" id="dust" src="Images/dust.gif" alt="pink rabbit dusting gif"/>

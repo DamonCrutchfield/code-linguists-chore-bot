@@ -20,20 +20,20 @@ Variables
     --clr-primary-8: #0d503c;
     --clr-primary-9: #06281e;
     /* darkest grey - used for headings */
-    --clr-grey-1: hsl(212, 33%, 89%);
+    --clr-grey-1: hsl(216, 14%, 85%);
     --clr-grey-2: hsl(210, 31%, 80%);
-    --clr-grey-3: hsl(211, 27%, 70%);
+    --clr-grey-3: hsl(211, 34%, 88%);
     --clr-grey-4: hsl(209, 23%, 60%);
     /* grey used for paragraphs */
-    --clr-grey-5: hsl(210, 22%, 49%);
-    --clr-grey-6: hsl(209, 28%, 39%);
+    --clr-grey-5: hsl(211, 41%, 45%);
+    --clr-grey-6: hsl(210, 45%, 21%);
     --clr-grey-7: hsl(209, 34%, 30%);
-    --clr-grey-8: hsl(211, 39%, 23%);
-    --clr-grey-9: hsl(209, 61%, 16%);
-    --clr-white: #fff;
+    --clr-grey-8: hsl(212, 18%, 30%);
+    --clr-grey-9: hsl(0, 3%, 6%);
+    --clr-white: rgb(245, 244, 245);
     --clr-red-dark: hsl(360, 67%, 44%);
     --clr-red-light: hsl(360, 71%, 66%);
-    --clr-blue-dark: #241896;
+    --clr-blue-dark: #1f11a1;
     --clr-green-light: hsl(125, 71%, 66%);
     --clr-black: #222;
     --transition: all 0.3s linear;
@@ -58,6 +58,7 @@ Variables
     padding: 0;
     box-sizing: border-box;
   }
+
   body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
     Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -113,7 +114,7 @@ Variables
       font-size: 1rem;
     }
     body {
-      font-size: 1rem;
+      font-size: 1.5rem;
     }
     h1,
     h2,
@@ -146,13 +147,14 @@ Variables
   
   .container {
     width: 90vw;
-    margin: 5rem 0;
+    margin-top: 5rem 0;
     max-width: var(--fixed-width);
     background: var(--clr-white);
     border-radius: var(--radius);
     padding: 1.5rem 2rem;
     box-shadow: var(--dark-shadow);
   }
+
   .container h3 {
     font-weight: normal;
     text-transform: none;
@@ -194,11 +196,10 @@ Variables
 	cursor: pointer;
 }
 
-.container button:hover {
+  .container button:hover {
     background: #3624cf;
 }
 
-  .complete-button,
   .remove-button {
     width: 25px;
     height: 25px;
@@ -215,17 +216,26 @@ Variables
     margin: 1rem auto 0 auto;
   }
 
+  .download-chore {
+    margin: 1rem auto 0 auto;
+  }
+
   .rotate img{
     transition: 1s ease;
     }
     
-    .grow img{
-        transition: 0.5s ease;
-        }
+  .grow img{
+    transition: 0.5s ease;
+  }
         
-        .grow img:hover{
-        -webkit-transform: scale(1.2);
-        -ms-transform: scale(1.2);
-        transform: scale(1.2);
-        transition: 1s ease;
-        }
+  .grow img:hover{
+    -webkit-transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    transform: scale(1.2);
+    transition: 1s ease;
+  }
+        
+  #dust{
+    position: absolute;
+
+  }

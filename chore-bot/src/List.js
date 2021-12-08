@@ -1,17 +1,29 @@
 import React, { useState } from 'react';
+import whooshSfx from './sounds/whoosh.flac';
 
-const List = ({chores}) => {
+
+const List = ({chores, setCount}) => {
   const [choreList, setChoreList] = useState(chores);
- 
+  const sfxWhoosh = new Audio(whooshSfx);
+
+
+  // if( chores.length === 0 ) {
+    
+  // }
+
   const resolveChore = (index) => {
     let array = [...choreList];
-    choreList.splice(index, 1);
+    array.splice(index, 1);
     setChoreList(array);
+    setCount(array.length);
+    sfxWhoosh.play();
+
   }
+
   return (
     <>
       {choreList.map((chore, index) => {
-        const { id, name, day, image } = chore;
+        const { id, name, day,  image } = chore;
         return (
             <div key={id} className='chore'>
                 <img tabIndex="0" alt={name} src={image} className="chore-images" />

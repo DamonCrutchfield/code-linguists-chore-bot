@@ -58,16 +58,21 @@ function App()   {
     //Add Chore
        const handleSubmit = (e) => {
             e.preventDefault();
+            sfxPop.play();
             setAddChore(false);
             console.log(`the chore entered was ${e.target[0].value}`);
             const choreList = chores;
+            let imageUrl = "../icons/default.png";
+            if(!e.target[3].value == ""){
+                imageUrl = e.target[3].value;
+            }
             choreList.push({
-                id: 10,
-                name: e.target[1].value,
-                day: e.target[2].value,
-                status: e.target[3].value,
-                image: "",
-                due:""
+                id: (choreList.length + 1),
+                name: e.target[0].value,
+                day: "Not used",
+                status:true,
+                image: imageUrl ,
+                due:e.target[1].value+":"+e.target[2].value
             });
             console.log(choreList);
             e.target.reset();
@@ -77,9 +82,9 @@ function App()   {
         <>
             <main>
                 <section className="container">
-                    <h3>{!chores.length ? chores.length: count} Chores Due This Week</h3>
+                    <h3 tabIndex="0">{!chores.length ? chores.length: count} Chores Due This Week</h3>
                     <List chores={chores} setCount={setCount}/>
-                    <button tabIndex="0" type="button" className="add-chore" data-toggle="modal" data-target="#exampleModal" onClick={() => setAddChore(!addChore)}>Add Chore</button>
+                    <button tabIndex="0" type="button" className="add-chore" data-toggle="modal" data-target="#exampleModal" onClick={() => { setAddChore(!addChore); sfxPop.play(); }}>Add Chore</button>
                     <br/>
                     <button tabIndex="0" className="download-chore" onClick={() => download(JSON.stringify(data), 'chore.json', 'text/plain')}>Download Chore list</button>
                     <img tabIndex="0" id="dust" src="Images/dust.gif" alt="pink rabbit dusting gif"/>
@@ -97,21 +102,21 @@ function App()   {
                             </div>
                             <div className="modal-body">
                                 <form onSubmit={handleSubmit}>  
-                                    <div className="form-group">
+                                    <div className="form-group" tabIndex ="0" aria-label="Enter a chore name">
                                         <input id="choreName" placeholder="Chore Name" type="text" title="Chore Name" required/>
                                     </div>
-                                    <div className="form-group">
-                                        <input id="choreDate" alt="Due by Date" type="date" title="Chore due date"/>
+                                    <div className="form-group" tabIndex ="0" aria-label="Enter a due Date">
+                                        <input id="choreDate" type="date" title="Chore due date"/>
+                                    </div>
+                                    <div className="form-group" tabIndex ="0" aria-label="Enter the time due">
+                                        <input id="choreTime" placeholder="HH:00" required pattern="^([0-1]?[0-9]|2[0-4]):([0-5][0-9])(:[0-5][0-9])?$" title="Chore Time: 24 Hour Time Clock"/>
+                                    </div>
+                                    <div className="form-group" tabIndex ="0" aria-label="Enter an Image URL, not required default image will be applied if none is added">
+                                        <input id="choreImage" placeholder="http://" title="not required default image will be applied if none is added"/>
                                     </div>
                                     <div className="form-group">
-                                        <input id="choreTime" alt="Due by Time" placeholder="HH:00" required pattern="^([0-1]?[0-9]|2[0-4]):([0-5][0-9])(:[0-5][0-9])?$" title="Chore Time: 24 Hour Time Clock"/>
-                                    </div>
-                                    <div className="form-group">
-                                        <input id="choreImage" alt="Add image URL" placeholder="http://" title="not required default image will be applied if none is added"/>
-                                    </div>
-                                    <div className="form-group">
-                                        <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        <button type="submit" className="btn btn-warning submit-button">Add Chore</button>
+                                        <button tabIndex ="0" type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button tabIndex ="0" type="submit" className="btn btn-warning submit-button">Add Chore</button>
                                     </div>
                                 </form>
                             </div>

@@ -13,21 +13,23 @@ function App()   {
     const [addChore, setAddChore] = useState(false); 
     const sfx = new Audio(dingSfx);
     const sfxPop = new Audio(popSfx);
-
     //Toast/Timer
     //timer function to check chore for popup reminder.
     async function checkChoreLoop() {
         //get Date and time
         const today = new Date();
-        const time = today.getHours() + ":" + today.getMinutes() + ":" + "00";
+        const time = today.getHours() + ":" + today.getMinutes();
         //2021-12-09 @ 23:00
         const date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-        console.log((date+":"+time));
+        console.log("Current Time:",(date+" @ "+time));
         //loop through chore due dates and check for a date time match`
         for(const chore in data){
+            console.log("Chore Due:", chores[chore].due);
             //format time and check for match and toast if there is match
-            if((time+" @ "+date) === data[chore].due){
+            console.log((date+" @ "+time)+" : "+data[chore].due);
+            if((date+" @ "+time) === data[chore].due){
                 //Sound Effect load and play when match found
+                console.log("Chore Alert");
                 sfx.play();
                 toast(data[chore].name);
             }
@@ -38,7 +40,7 @@ function App()   {
         toast("Wash Your Dishes");
     }
     //set timer interval 60000 = 1min  
-    const MINUTE_MS = 10000;
+    const MINUTE_MS = 60000;
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -60,12 +62,11 @@ function App()   {
         a.click();
     }
     
-    //Add Chore
+    //Add Chore to list
        const handleSubmit = (e) => {
             e.preventDefault();
             sfxPop.play();
             setAddChore(false);
-            console.log(`the chore entered was ${e.target[0].value}`);
             const choreList = chores;
             let imageUrl = "../icons/default.png";
             if(!e.target[3].value == ""){
@@ -79,6 +80,7 @@ function App()   {
                 image: imageUrl ,
                 due:e.target[1].value+" @ "+e.target[2].value
             });
+            setChore(choreList);
             e.target.reset();
         };
 

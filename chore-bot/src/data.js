@@ -5,7 +5,7 @@ export default [
         day: 'Sunday',
         status: true,
         image: '../icons/clean-dishes.png',
-        due:"2021-12-09 @ 16:12"
+        due:"2021-12-8 @ 18:52"
     },
     {
         id: 2,
@@ -13,7 +13,7 @@ export default [
         day: 'Saturday',
         status: true,
         image: '../icons/sweep.png',
-        due:"2021-12-09 @ 23:00"
+        due:"2021-12-9 @ 12:55"
     },
     {
         id: 3,
@@ -21,7 +21,7 @@ export default [
         day: 'Tuesday',
         status: true,
         image: '../icons/dust.png',
-        due:"2021-12-09 @ 23:00"
+        due:"2021-12-09 @ 13:00"
     },
     {
         id: 4,
@@ -29,7 +29,7 @@ export default [
         day: 'Saturday',
         status: true,
         image: '../icons/mop.png',
-        due:"2021-12-09 @ 23:00"
+        due:"2021-12-19 @ 11:00"
     },
     {
         id: 5,
@@ -37,7 +37,7 @@ export default [
         day: 'Monday',
         status: true,
         image: '../icons/trash.png',
-        due:"2021-12-09 @ 23:00"
+        due:"2021-12-19 @ 09:00"
     },
     {
         id: 6,
@@ -45,6 +45,6 @@ export default [
         day: 'Wednesday',
         status: true,
         image: '../icons/washing.png',
-        due:"2021-12-09 @ 23:00"
+        due:"2021-12-20 @ 17:30"
     },
 ];

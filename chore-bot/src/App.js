@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import data from './data';
+import {data} from './data';
 import List from './List';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -72,15 +72,26 @@ function App()   {
             if(!e.target[3].value == ""){
                 imageUrl = e.target[3].value;
             }
-            choreList.push({
-                id: (choreList.length + 1),
-                name: e.target[0].value,
-                day: "Not used",
-                status:true,
-                image: imageUrl ,
-                due:e.target[1].value+" @ "+e.target[2].value
-            });
-            setChore(choreList);
+            //TODO: This is not updating componet List not sure why if state is changing it should force a render?
+            const newChore = {
+                    id: (choreList.length + 1),
+                    name: e.target[0].value,
+                    day: "Not used",
+                    status:true,
+                    image: imageUrl ,
+                    due:e.target[1].value+" @ "+e.target[2].value
+                }
+            setChore( oldList => [...oldList, newChore] );
+
+            // choreList.push({
+            //     id: (choreList.length + 1),
+            //     name: e.target[0].value,
+            //     day: "Not used",
+            //     status:true,
+            //     image: imageUrl ,
+            //     due:e.target[1].value+" @ "+e.target[2].value
+            // });
+            // setChore(choreList);
             e.target.reset();
         };
 
@@ -89,7 +100,7 @@ function App()   {
             <main>
                 <section className="container">
                     <h3 tabIndex="0">{!chores.length ? chores.length: count} Chores Due</h3>
-                    <List chores={chores} setCount={setCount}/>
+                    <List chores={chores} setChore={setChore} setCount={setCount}/>
                     <button tabIndex="0" type="button" className="add-chore" data-toggle="modal" data-target="#exampleModal" onClick={() => { setAddChore(!addChore); sfxPop.play(); }}>Add Chore</button>
                     <br/>
                     <button tabIndex="0" className="download-chore" onClick={() => download(JSON.stringify(data), 'chore.json', 'text/plain')}>Download Chore list</button>

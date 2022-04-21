@@ -14,5 +14,6 @@
 
 * [React.js](https://reactjs.org/)
 * [Express](https://expressjs.com/)
+* [Bootstrap](https://getbootstrap.com/)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
